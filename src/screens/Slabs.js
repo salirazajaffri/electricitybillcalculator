@@ -1,7 +1,9 @@
 import {useNavigation} from '@react-navigation/core';
-import React from 'react';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import React, {useEffect} from 'react';
+import {Alert, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {DataTable} from 'react-native-paper';
+import AsyncStorage from '@react-native-community/async-storage';
+
 const Slabs = props => {
   // slabs and set slabs are in props
   const {navigate} = useNavigation();
@@ -28,11 +30,23 @@ const Slabs = props => {
               </TouchableOpacity>
               <TouchableOpacity
                 onPress={() => {
-                  const filteredSlabs = props.slabs.filter(
-                    slab => slab !== props.slabs[index],
-                  );
+                  Alert.alert('Delete Slab', 'Are you sure?', [
+                    {
+                      text: 'No',
+                      onPress: () => console.log('Cancel Pressed'),
+                      style: 'cancel',
+                    },
+                    {
+                      text: 'Yes',
+                      onPress: () => {
+                        const filteredSlabs = props.slabs.filter(
+                          slab => slab !== props.slabs[index],
+                        );
 
-                  props.setSlabs(filteredSlabs);
+                        props.setSlabs(filteredSlabs);
+                      },
+                    },
+                  ]);
                 }}>
                 <Text>X</Text>
               </TouchableOpacity>
