@@ -1,30 +1,27 @@
+import {useNavigation} from '@react-navigation/core';
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 
 const UserListItem = ({item}) => {
-  const {name, username, email} = item;
+  const {navigate} = useNavigation();
   return (
-    <View
+    <TouchableOpacity
+      key={item.id}
+      onPress={() =>
+        navigate('UserDetails', {
+          userId: item.id,
+        })
+      }
       style={{
-        padding: 5,
-        // margin:10,
-
-        marginLeft: 10,
-        shadowColor: '#000',
-        shadowOffset: {
-          width: 0,
-          height: 2,
-        },
-        shadowOpacity: 0.25,
-        shadowRadius: 3.84,
-
-        elevation: 5,
-        borderRadius: 8,
+        paddingLeft: 20,
+        paddingVertical: 3,
+        margin: 5,
+        // marginLeft: 10,
       }}>
-      <Text>Name : {name}</Text>
-      <Text>Username : {username}</Text>
-      <Text>Email : {email}</Text>
-    </View>
+      <Text>Name : {item.name}</Text>
+      <Text>Username : {item.username}</Text>
+      <Text>Email : {item.email}</Text>
+    </TouchableOpacity>
   );
 };
 
