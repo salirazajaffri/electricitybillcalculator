@@ -19,10 +19,11 @@ const Navigation = () => {
   // remaining asyncstorage
 
   const [slabs, setSlabs] = useState([
-    {start: '1', end: '100', rate: '5'},
-    {start: '101', end: '500', rate: '80'},
-    {start: '501', end: null, rate: '10'},
+    {start: 1, end: 100, rate: 5},
+    {start: 101, end: 500, rate: 80},
+    {start: 501, end: null, rate: 10},
   ]);
+
   const Stack = createStackNavigator();
   const Tabs = createBottomTabNavigator();
   const stack = () => (

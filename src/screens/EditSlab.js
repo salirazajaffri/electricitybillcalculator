@@ -1,6 +1,7 @@
 import {useNavigation} from '@react-navigation/core';
 import React, {useEffect, useState} from 'react';
 import {Text, TouchableOpacity, View} from 'react-native';
+// import {TextInput} from 'react-native';
 import {TextInput} from 'react-native-paper';
 import Header from '../components/Header';
 
@@ -8,22 +9,23 @@ const EditSlab = ({route, slabs, setSlabs}) => {
   const {slabIndex} = route.params;
   const {goBack} = useNavigation();
   const [editSlab, setEditSlab] = useState({
-    start: '',
-    end: '',
-    rate: '',
+    start: null,
+    end: null,
+    rate: null,
   });
-  useEffect(() => {
-    setEditSlab({
-      start: slabs[slabIndex].start,
-      end: slabs[slabIndex].end,
-      rate: slabs[slabIndex].rate,
-    });
-  }, []);
+  // useEffect(() => {
+  //   setEditSlab({
+  //     start: slabs[slabIndex].start,
+  //     end: slabs[slabIndex].end,
+  //     rate: slabs[slabIndex].rate,
+  //   });
+  // }, []);
   return (
     <>
       <Header callback={goBack} />
       <View>
         <TextInput
+          keyboardType="number-pad"
           mode="outlined"
           label="start"
           value={editSlab.start}
@@ -32,6 +34,7 @@ const EditSlab = ({route, slabs, setSlabs}) => {
           }}
         />
         <TextInput
+          keyboardType="number-pad"
           mode="outlined"
           label="end"
           value={editSlab.end}
@@ -40,6 +43,7 @@ const EditSlab = ({route, slabs, setSlabs}) => {
           }}
         />
         <TextInput
+          keyboardType="number-pad"
           mode="outlined"
           label="rate"
           value={editSlab.rate}

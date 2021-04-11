@@ -7,11 +7,20 @@ import AsyncStorage from '@react-native-community/async-storage';
 const Slabs = props => {
   // slabs and set slabs are in props
   const {navigate} = useNavigation();
-  //   const slabs = [
-  //     {start: 1, end: 100, rate: 5},
-  //     {start: 101, end: 500, rate: 80},
-  //     {start: 501, end: null, rate: 10},
-  //   ];
+  let value = 586;
+  let totalUnits = [];
+  props.slabs.map(slab => {
+    if (value >= slab.start && value <= slab.end) {
+      value = value - slab.end;
+      let unit = value - slab.end;
+
+      totalUnits.push({
+        units: unit,
+        rate: slab.rate,
+      });
+    }
+  });
+  console.log(totalUnits);
   return (
     <View style={{flex: 1}}>
       <DataTable>

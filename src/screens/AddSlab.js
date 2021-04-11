@@ -7,9 +7,9 @@ import Header from '../components/Header';
 const AddSlab = ({slabs, setSlabs}) => {
   const {goBack} = useNavigation();
   const [addSlab, setAddSlab] = useState({
-    start: '',
-    end: '',
-    rate: '',
+    start: 0,
+    end: 0,
+    rate: 0,
   });
   return (
     <>
