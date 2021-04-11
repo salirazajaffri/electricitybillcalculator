@@ -1,8 +1,19 @@
+import {useNavigation} from '@react-navigation/core';
 import React, {useEffect, useState} from 'react';
-import {StyleSheet, Text, View, ActivityIndicator} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  ActivityIndicator,
+  TouchableOpacity,
+  Button,
+} from 'react-native';
 import UsersApi from '../apis/UsersApi';
+import Header from '../components/Header';
 
 const UserDetails = ({route}) => {
+  const {navigate} = useNavigation();
+  const {goBack} = useNavigation();
   const {userId} = route.params;
   const [user, setUser] = useState({});
   useEffect(() => {
@@ -24,10 +35,40 @@ const UserDetails = ({route}) => {
     );
   } else {
     return (
-      <View>
-        <Text>Users Details</Text>
-        <Text>{JSON.stringify(user)}</Text>
-      </View>
+      <>
+        <Header callback={() => goBack()} />
+        {/* User Details */}
+        <View
+          style={{
+            flex: 1,
+            marginTop: -80,
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
+          <Text>{user.name}</Text>
+          <Text>{user.username}</Text>
+          <Text>{user.address.suite}</Text>
+          <Text>{user.address.street}</Text>
+          <Text>{user.address.city}</Text>
+          <Text>{user.address.zipcode}</Text>
+          {/* button group */}
+          <View style={{marginTop: 36}}>
+            <TouchableOpacity onPress={() => navigate('Billing')}>
+              <Text
+                style={{
+                  fontSize: 14,
+                  backgroundColor: 'crimson',
+                  paddingVertical: 8,
+                  paddingHorizontal: 15,
+                  color: '#FFF',
+                  borderRadius: 50,
+                }}>
+                Show Billing
+              </Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </>
     );
   }
 };

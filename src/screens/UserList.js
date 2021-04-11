@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {StyleSheet, FlatList} from 'react-native';
+import {StyleSheet, FlatList, ActivityIndicator} from 'react-native';
 import UsersApi from '../apis/UsersApi';
 import UserListItem from '../components/UserListItem';
 
@@ -22,7 +22,16 @@ const UserList = () => {
       />
     );
   } else {
-    return <Text>Loading</Text>;
+    return (
+      <View
+        style={{
+          flex: 1,
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}>
+        <ActivityIndicator size="large" color="crimson" />
+      </View>
+    );
   }
 };
 
