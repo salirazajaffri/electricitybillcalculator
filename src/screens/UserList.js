@@ -1,14 +1,17 @@
-import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import React from 'react';
+import {StyleSheet, Text, View, ScrollView, FlatList} from 'react-native';
+import UserListItem from '../components/UserListItem';
 
 const UserList = ({users}) => {
-    return (
-        <View>
-            <Text>{JSON.stringify(users)}</Text>
-        </View>
-    )
-}
+  return (
+    <FlatList
+      data={users}
+      renderItem={({item}) => <UserListItem item={item} />}
+      keyExtractor={user => user.id}
+    />
+  );
+};
 
-export default UserList
+export default UserList;
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({});
